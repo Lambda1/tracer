@@ -47,14 +47,18 @@ public class PlayerController : MonoBehaviour
         Move();
     }
 
+    // Player制御
+    // 移動処理
     void Move()
     {
     }
 
-    // χ入力による移動処理
+    // キー入力による移動ベクトルの算出
     void MoveDirection()
     {
+        // ベクトル初期化
         m_velocity = Vector3.zero;
+        // 入力処理
         foreach(KeyData data in m_key_table)
         {
             if (Input.GetKey((KeyCode)data.m_key))
@@ -62,6 +66,7 @@ public class PlayerController : MonoBehaviour
                 m_velocity += data.m_vec;
             }
         }
+        // ベクトル正規化 + 移動量の算出
     }
 
     // 初期化処理
