@@ -26,20 +26,26 @@ public class PlayerController : MonoBehaviour
     // データ
     [SerializeField] private Rigidbody m_rigidbody = null;
 
-    /* パラメータ */
-    [SerializeField] private float m_speed = 1.0f;
-    private Vector3 m_velocity;
+    // パラメータ
+    [SerializeField] private float m_speed = 1.0f;             // 移動速度(方向)
+    [SerializeField] private float m_mouse_sensitivity = 1.0f; // マウス感度
+
+    // 処理変数
+    private Vector3 m_player_first_position; // 初期座標
+    private Vector3 m_move_direction;        // 移動方向ベクトル
+    private Quaternion m_angle_direction;    // 回転クォータニオン
 
     void Start()
     {
-        m_velocity = Vector3.zero;
-
+        m_player_first_position = transform.position;
+        m_move_direction = Vector3.zero;
         InitKeyTable();
     }
 
     void Update()
     {
-        MoveDirection(); // キー入力による移動
+       m_move_direction = MoveDirection();    // キーによる移動
+       m_angle_direction = RotateDirection(); // マウスによる回転
     }
 
     void FixedUpdate()
@@ -47,26 +53,50 @@ public class PlayerController : MonoBehaviour
         Move();
     }
 
+    void LateUpdate()
+    {
+        RotateBody();
+    }
+
     // Player制御
     // 移動処理
     void Move()
     {
+        //transform.Translate(m_move_direction * Time.deltaTime * m_speed);
+        //transform.position += m_move_direction * Time.deltaTime * m_speed;
+        m_rigidbody.AddRelativeForce(m_move_direction * Time.deltaTime * m_speed); // ローカル座標をもとに移動
+    }
+    // 回転処理
+    void RotateBody()
+    {
+        transform.rotation *= m_angle_direction;
     }
 
     // キー入力による移動ベクトルの算出
-    void MoveDirection()
+    Vector3 MoveDirection()
     {
         // ベクトル初期化
-        m_velocity = Vector3.zero;
+        Vector3 direction = Vector3.zero;
         // 入力処理
         foreach(KeyData data in m_key_table)
         {
             if (Input.GetKey((KeyCode)data.m_key))
             {
-                m_velocity += data.m_vec;
+                direction += data.m_vec;
             }
         }
-        // ベクトル正規化 + 移動量の算出
+        return direction;
+    }
+    // マウス入力による回転処理
+    Quaternion RotateDirection()
+    {
+        Quaternion quaternion = m_angle_direction;
+        if (Input.GetMouseButton(0))
+        {
+            Quaternion to_quart1 = Quaternion.AngleAxis(Input.GetAxis("Mouse X") * Time.deltaTime * m_mouse_sensitivity, Vector3.up);
+            quaternion = Quaternion.Slerp(transform.rotation, to_quart1 , 1.0f);
+        }
+        return quaternion;
     }
 
     // 初期化処理
