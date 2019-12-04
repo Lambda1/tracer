@@ -31,15 +31,21 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float m_mouse_sensitivity = 1.0f; // マウス感度
     [SerializeField] private float MAX_VELOCITY;               // 最大速度
     private int m_get_item_number;                             // 取得アイテム数
+    private bool is_death;                                     // 死亡判定
 
     // 処理変数
     private Vector3 m_player_first_position; // 初期座標
     private Vector3 m_move_direction;        // 移動方向ベクトル
     private Quaternion m_angle_direction;    // 回転クォータニオン
 
+    // Getter
     public int GetItemCount
     {
         get { return m_get_item_number; }
+    }
+    public bool IsDeath
+    {
+        get { return is_death; }
     }
 
     void Start()
@@ -47,23 +53,41 @@ public class PlayerController : MonoBehaviour
         m_player_first_position = transform.position;
         m_move_direction = Vector3.zero;
         m_get_item_number = 0;
+        is_death = false;
         InitKeyTable();
     }
 
     void Update()
     {
-       m_move_direction = MoveDirection();    // キーによる移動
-       m_angle_direction = RotateDirection(); // マウスによる回転
+        if (!is_death)
+        {
+            m_move_direction = MoveDirection();    // キーによる移動
+            m_angle_direction = RotateDirection(); // マウスによる回転
+        }
     }
 
     void FixedUpdate()
     {
-        Move();
+        if (!is_death)
+        {
+            Move(); // 移動処理
+        }
     }
 
     void LateUpdate()
     {
-        RotateBody(); // 体の回転処理
+        if (!is_death)
+        {
+            RotateBody(); // 体の回転処理
+        }
+    }
+
+    // 敵に捕縛された処理
+    public void CaughtEnemy(Vector3 enemy_position)
+    {
+        // 敵に向き, カメラを揺らす
+        transform.rotation = Quaternion.LookRotation(enemy_position - transform.position);
+        transform.Find("Main Camera").gameObject.GetComponent<CameraController>().KillCamera();
     }
 
     // Player制御
@@ -126,6 +150,11 @@ public class PlayerController : MonoBehaviour
         {
             m_get_item_number++;
             other.GetComponent<KeyItem>().Got();
+        }
+        // 敵に捕まった処理
+        if (other.CompareTag("Enemy"))
+        {
+            is_death = true;
         }
     }
 }

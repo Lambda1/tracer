@@ -41,7 +41,14 @@ public class Enemy : MonoBehaviour
         // 追跡開始
         is_chase = true;
     }
+    // プレイヤ捕縛処理
+    public void CatchPlayer(Vector3 player_position)
+    {
+        is_chase = false;
+        transform.rotation = Quaternion.LookRotation(player_position - transform.position);
+    }
 
+    // 追跡中
     private void Chase()
     {
         m_ai_agent.destination = target.transform.position;

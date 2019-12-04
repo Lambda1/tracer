@@ -1389,6 +1389,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3191a5244fe759c449c1f17f8f3c794c, type: 3}
+--- !u!1 &192739028 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1564059734117115450, guid: e2fd13dcc95ea9e418cf04e7a593ebb5,
+    type: 3}
+  m_PrefabInstance: {fileID: 7467022341040551303}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &192739032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 192739028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb2f70653b9979346826d1a8f38aba4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &193496248
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3581,8 +3599,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.6907158, y: 2.7637887, z: 1.5484762}
-  m_Center: {x: 0.0032215118, y: 0.88189435, z: 0.030551434}
+  m_Size: {x: 2.2132797, y: 2.7637887, z: 2.2730656}
+  m_Center: {x: -0.022350311, y: 0.88189435, z: 0.14233112}
 --- !u!1001 &615603423
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15317,6 +15335,26 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6262463853409846936, guid: e2fd13dcc95ea9e418cf04e7a593ebb5,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 1.3083296
+      objectReference: {fileID: 0}
+    - target: {fileID: 6262463853409846936, guid: e2fd13dcc95ea9e418cf04e7a593ebb5,
+        type: 3}
+      propertyPath: m_Center.x
+      value: -0.023335457
+      objectReference: {fileID: 0}
+    - target: {fileID: 6262463853409846936, guid: e2fd13dcc95ea9e418cf04e7a593ebb5,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 1.2503695
+      objectReference: {fileID: 0}
+    - target: {fileID: 6262463853409846936, guid: e2fd13dcc95ea9e418cf04e7a593ebb5,
+        type: 3}
+      propertyPath: m_Center.z
+      value: 0.032812834
+      objectReference: {fileID: 0}
     - target: {fileID: 3977763026926386698, guid: e2fd13dcc95ea9e418cf04e7a593ebb5,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -15350,7 +15388,7 @@ PrefabInstance:
     - target: {fileID: 1489052883257836828, guid: e2fd13dcc95ea9e418cf04e7a593ebb5,
         type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: -2.5054566e+20
+      value: -1.0007207e-30
       objectReference: {fileID: 0}
     - target: {fileID: 1489052883257836828, guid: e2fd13dcc95ea9e418cf04e7a593ebb5,
         type: 3}
