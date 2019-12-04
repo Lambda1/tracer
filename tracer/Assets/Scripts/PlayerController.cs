@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour
     // パラメータ
     [SerializeField] private float m_speed = 1.0f;             // 移動速度(方向)
     [SerializeField] private float m_mouse_sensitivity = 1.0f; // マウス感度
+    [SerializeField] private float MAX_VELOCITY;               // 最大速度
     private int m_get_item_number;                             // 取得アイテム数
 
     // 処理変数
@@ -62,16 +63,18 @@ public class PlayerController : MonoBehaviour
 
     void LateUpdate()
     {
-        RotateBody();
+        RotateBody(); // 体の回転処理
     }
 
     // Player制御
     // 移動処理
     void Move()
     {
-        //transform.Translate(m_move_direction * Time.deltaTime * m_speed);
-        //transform.position += m_move_direction * Time.deltaTime * m_speed;
-        m_rigidbody.AddRelativeForce(m_move_direction * Time.deltaTime * m_speed); // ローカル座標をもとに移動
+        // 速度制限
+        if (m_rigidbody.velocity.magnitude < MAX_VELOCITY)
+        {
+            m_rigidbody.AddRelativeForce(m_move_direction * Time.deltaTime * m_speed); // ローカル座標をもとに移動
+        }
     }
     // 回転処理
     void RotateBody()

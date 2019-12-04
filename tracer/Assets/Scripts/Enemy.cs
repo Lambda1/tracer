@@ -11,7 +11,9 @@ public class Enemy : MonoBehaviour
     // 処理変数
     private NavMeshAgent m_ai_agent;  // AI処理
     private bool is_chase;            // 追跡開始
-    public GameObject target;
+    public GameObject target;         // ターゲット
+
+    public float SetEnemySpeed { set { m_ai_agent.speed = value; } }
 
     // Start is called before the first frame update
     void Start()
@@ -22,16 +24,13 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // 向きの変更
+        transform.rotation = Quaternion.LookRotation(transform.forward);
+        //LookDirection();
         if (is_chase)
         {
             Chase();
         }
-    }
-
-    // 追跡開始準備
-    public void PrepareChase()
-    {
-
     }
 
     // 追跡開始
@@ -45,6 +44,6 @@ public class Enemy : MonoBehaviour
 
     private void Chase()
     {
-        m_ai
+        m_ai_agent.destination = target.transform.position;
     }
 }
