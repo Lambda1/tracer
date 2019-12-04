@@ -5,9 +5,6 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
-    // パラメータ
-    [SerializeField] private float m_chase_speed = 1.0f; // 追跡速度
-
     // 処理変数
     private NavMeshAgent m_ai_agent;  // AI処理
     private bool is_chase;            // 追跡開始
@@ -26,7 +23,6 @@ public class Enemy : MonoBehaviour
     {
         // 向きの変更
         transform.rotation = Quaternion.LookRotation(transform.forward);
-        //LookDirection();
         if (is_chase)
         {
             Chase();
@@ -45,6 +41,7 @@ public class Enemy : MonoBehaviour
     public void CatchPlayer(Vector3 player_position)
     {
         is_chase = false;
+        m_ai_agent.enabled = false;
         transform.rotation = Quaternion.LookRotation(player_position - transform.position);
     }
 

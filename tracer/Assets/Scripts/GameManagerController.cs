@@ -32,7 +32,7 @@ public class GameManagerController : MonoBehaviour
     // ゲーム定数
     private const int KEY_ITEM_NUM = 5;                   // キーアイテムの数
     private const float ENEMY_MAX_SPEED = 10.0f;          // 敵の最高速度
-    private const float GAME_OVER_DISPLAY_FRAME = 180.0f; // ゲームオーバ画面表示フレーム数
+    private const float GAME_OVER_DISPLAY_FRAME = 2.0f;   // ゲームオーバ画面表示時間
     // ゲームオーバ空間座標
     private Vector3 GAME_OVER_WORLD_PLAYER = new Vector3(-60, 0, -18);
     private Vector3 GAME_OVER_WORLD_ENEMY  = new Vector3(-60, 0, -20);
@@ -53,6 +53,7 @@ public class GameManagerController : MonoBehaviour
             case STATE.GAME:
                 Game(); break;
             case STATE.GAME_OVER:
+                m_state = STATE.GAME_CLEAR;
                 StartCoroutine("GameOver"); break;
             case STATE.GAME_CLEAR:
                 break;
@@ -96,13 +97,12 @@ public class GameManagerController : MonoBehaviour
     // ゲーム存続判定
     STATE GameState()
     {
-        STATE game_state = STATE.GAME;
-        if (m_player.IsDeath)
+        if (m_state == STATE.GAME && m_player.IsDeath)
         {
-            game_state = STATE.GAME_OVER;
+           STATE game_state = STATE.GAME_OVER;
+            return game_state;
         }
-
-        return game_state;
+        return m_state;
     }
 
     // ゲーム中処理
@@ -124,20 +124,20 @@ public class GameManagerController : MonoBehaviour
     // ゲームオーバ処理
     IEnumerator GameOver()
     {
-        // 敵とプレイヤをゲームオーバ空間へ空間転移
-        m_player.transform.position = GAME_OVER_WORLD_PLAYER;
-        m_enemy.transform.position  = GAME_OVER_WORLD_ENEMY;
-
-        int elapsed_frame = 0;
+        float elapsed_frame = 0;
         while (elapsed_frame < GAME_OVER_DISPLAY_FRAME)
         {
+            // 敵とプレイヤをゲームオーバ空間へ空間転移
+            // NOTE: positionは瞬間移動ではないため, 毎フレーム計算させる.
+            m_player.transform.position = GAME_OVER_WORLD_PLAYER;
+            m_enemy.transform.position = GAME_OVER_WORLD_ENEMY;
+
             // 捕縛処理
             m_enemy.CatchPlayer(m_player.transform.position);
             m_player.CaughtEnemy(m_enemy.transform.position);
 
-            elapsed_frame++;
+            elapsed_frame += Time.deltaTime;
             yield return null;
         }
-        m_state = STATE.GAME;
     }
 }

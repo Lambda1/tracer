@@ -85,6 +85,7 @@ public class PlayerController : MonoBehaviour
     // 敵に捕縛された処理
     public void CaughtEnemy(Vector3 enemy_position)
     {
+        m_rigidbody.isKinematic = true;
         // 敵に向き, カメラを揺らす
         transform.rotation = Quaternion.LookRotation(enemy_position - transform.position);
         transform.Find("Main Camera").gameObject.GetComponent<CameraController>().KillCamera();
