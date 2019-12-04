@@ -14,7 +14,7 @@ public class GameManagerController : MonoBehaviour
 
     // キャラクタデータ
     [SerializeField] private PlayerController m_player = null;
-    [SerializeField] private GameObject m_enemy  = null;
+    [SerializeField] private Enemy m_enemy  = null;
     [SerializeField] private GateController m_gate = null;
     [SerializeField] private DoorController m_door = null;
 
