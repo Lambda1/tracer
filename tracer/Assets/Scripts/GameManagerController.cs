@@ -25,6 +25,10 @@ public class GameManagerController : MonoBehaviour
     [SerializeField] private List<GateController> m_gate = null;
     [SerializeField] private DoorController m_door = null;
 
+    // BGMデータ
+    private AudioSource m_audio_source = null;
+    [SerializeField] private List<AudioClip> m_audio_clip = null;
+
     // ゲーム段階
     private WAVE  m_wave;
     private STATE m_state;
@@ -40,6 +44,13 @@ public class GameManagerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // BGM処理
+        m_audio_source = GetComponent<AudioSource>();
+        m_audio_source.loop = true;
+        m_audio_source.Play();
+        //m_audio_source.PlayOneShot(m_audio_clip[0]);
+
+        // ゲーム処理
         m_wave = WAVE.FIRST;
         m_state = STATE.GAME;
     }
@@ -53,8 +64,8 @@ public class GameManagerController : MonoBehaviour
             case STATE.GAME:
                 Game(); break;
             case STATE.GAME_OVER:
-                m_state = STATE.GAME_CLEAR;
-                StartCoroutine("GameOver"); break;
+                GameOverEnd();
+                break;
             case STATE.GAME_CLEAR:
                 break;
             default:
@@ -83,8 +94,13 @@ public class GameManagerController : MonoBehaviour
         if (m_player.GetItemCount >= KEY_ITEM_NUM)
         {
             m_wave = WAVE.LAST;
-            m_door.Open(); // ゴールを開ける
+            // ゴールを開ける
+            m_door.Open();
+            // 敵の移動速度をMAXにする
             m_enemy.SetEnemySpeed = ENEMY_MAX_SPEED;
+            // BGM切り替え
+            m_audio_source.Stop();
+            m_audio_source.PlayOneShot(m_audio_clip[1]);
         }
     }
 
@@ -139,5 +155,17 @@ public class GameManagerController : MonoBehaviour
             elapsed_frame += Time.deltaTime;
             yield return null;
         }
+    }
+    // ゲームオーバ時の終了処理
+    void GameOverEnd()
+    {
+        // 状態遷移
+        m_state = STATE.GAME_CLEAR;
+        // BGM切り替え
+        m_audio_source.Stop();
+        m_audio_source.loop = false;
+        m_audio_source.PlayOneShot(m_audio_clip[2]);
+        // ゲームオーバ処理
+        StartCoroutine("GameOver");
     }
 }
