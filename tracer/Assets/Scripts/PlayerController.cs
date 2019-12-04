@@ -36,6 +36,11 @@ public class PlayerController : MonoBehaviour
     private Vector3 m_move_direction;        // 移動方向ベクトル
     private Quaternion m_angle_direction;    // 回転クォータニオン
 
+    public int GetItemCount
+    {
+        get { return m_get_item_number; }
+    }
+
     void Start()
     {
         m_player_first_position = transform.position;
