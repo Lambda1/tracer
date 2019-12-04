@@ -7440,6 +7440,25 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2081844806}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1516700011 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 181752, guid: 34b237876876baf4fa134407d8dc57d5,
+    type: 3}
+  m_PrefabInstance: {fileID: 400240893}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1516700012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1516700011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 452aa799853f29341a3984a1e82e05aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HEIGHT_LENGTH: 3
 --- !u!1001 &1533916277
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11306,6 +11325,31 @@ PrefabInstance:
       propertyPath: m_BoundingSphereOverride.w
       value: 3.8205e-41
       objectReference: {fileID: 0}
+    - target: {fileID: 3947838526758934234, guid: 0d3b8928c17c3b74d8c28e1d869d6474,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3947838526758934234, guid: 0d3b8928c17c3b74d8c28e1d869d6474,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 1.6890652
+      objectReference: {fileID: 0}
+    - target: {fileID: 3947838526758934234, guid: 0d3b8928c17c3b74d8c28e1d869d6474,
+        type: 3}
+      propertyPath: m_Center.y
+      value: -0.26071298
+      objectReference: {fileID: 0}
+    - target: {fileID: 3947838526758934234, guid: 0d3b8928c17c3b74d8c28e1d869d6474,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 1.9041901
+      objectReference: {fileID: 0}
+    - target: {fileID: 3947838526758934234, guid: 0d3b8928c17c3b74d8c28e1d869d6474,
+        type: 3}
+      propertyPath: m_Center.x
+      value: -0.21166229
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d3b8928c17c3b74d8c28e1d869d6474, type: 3}
 --- !u!1001 &6551599309728906113
@@ -12289,6 +12333,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6102619107430582792, guid: e2fd13dcc95ea9e418cf04e7a593ebb5,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 7901420482490481898, guid: e2fd13dcc95ea9e418cf04e7a593ebb5,
         type: 3}
       propertyPath: m_Constraints
@@ -12373,6 +12422,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6262463853409846936, guid: e2fd13dcc95ea9e418cf04e7a593ebb5,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2612398482935585666, guid: e2fd13dcc95ea9e418cf04e7a593ebb5,
         type: 3}

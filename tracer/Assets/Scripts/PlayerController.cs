@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour
     // パラメータ
     [SerializeField] private float m_speed = 1.0f;             // 移動速度(方向)
     [SerializeField] private float m_mouse_sensitivity = 1.0f; // マウス感度
+    private int m_get_item_number;                             // 取得アイテム数
 
     // 処理変数
     private Vector3 m_player_first_position; // 初期座標
@@ -39,6 +40,7 @@ public class PlayerController : MonoBehaviour
     {
         m_player_first_position = transform.position;
         m_move_direction = Vector3.zero;
+        m_get_item_number = 0;
         InitKeyTable();
     }
 
@@ -107,5 +109,15 @@ public class PlayerController : MonoBehaviour
         m_key_table.Add(new KeyData(KEY.DOWN, new Vector3( 0.0f, 0.0f,-1.0f)));
         m_key_table.Add(new KeyData(KEY.RIGHT,new Vector3( 1.0f, 0.0f, 0.0f)));
         m_key_table.Add(new KeyData(KEY.LEFT, new Vector3(-1.0f, 0.0f, 0.0f)));
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        // アイテム取得処理
+        if(other.CompareTag("KeyItem"))
+        {
+            m_get_item_number++;
+            other.GetComponent<KeyItem>().Got();
+        }
     }
 }
