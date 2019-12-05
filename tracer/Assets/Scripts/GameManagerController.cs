@@ -36,7 +36,7 @@ public class GameManagerController : MonoBehaviour
     // ゲーム定数
     private const int KEY_ITEM_NUM = 5;                   // キーアイテムの数
     private const float ENEMY_MAX_SPEED = 10.0f;          // 敵の最高速度
-    private const float GAME_OVER_DISPLAY_FRAME = 2.0f;   // ゲームオーバ画面表示時間
+    private const float GAME_OVER_DISPLAY_FRAME = 3.0f;   // ゲームオーバ画面表示時間
     // ゲームオーバ空間座標
     private Vector3 GAME_OVER_WORLD_PLAYER = new Vector3(-60, 0, -18);
     private Vector3 GAME_OVER_WORLD_ENEMY  = new Vector3(-60, 0, -20);
@@ -46,9 +46,8 @@ public class GameManagerController : MonoBehaviour
     {
         // BGM処理
         m_audio_source = GetComponent<AudioSource>();
-        m_audio_source.loop = true;
+        m_audio_source.clip = m_audio_clip[0];
         m_audio_source.Play();
-        //m_audio_source.PlayOneShot(m_audio_clip[0]);
 
         // ゲーム処理
         m_wave = WAVE.FIRST;
@@ -100,7 +99,8 @@ public class GameManagerController : MonoBehaviour
             m_enemy.SetEnemySpeed = ENEMY_MAX_SPEED;
             // BGM切り替え
             m_audio_source.Stop();
-            m_audio_source.PlayOneShot(m_audio_clip[1]);
+            m_audio_source.clip = m_audio_clip[1];
+            m_audio_source.Play();
         }
     }
 
@@ -163,7 +163,6 @@ public class GameManagerController : MonoBehaviour
         m_state = STATE.GAME_CLEAR;
         // BGM切り替え
         m_audio_source.Stop();
-        m_audio_source.loop = false;
         m_audio_source.PlayOneShot(m_audio_clip[2]);
         // ゲームオーバ処理
         StartCoroutine("GameOver");
