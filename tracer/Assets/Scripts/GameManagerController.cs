@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManagerController : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class GameManagerController : MonoBehaviour
     {
         GAME,       // ゲーム中
         GAME_OVER,  // ゲームオーバ
+        GAME_START, // スタートへ戻る
         GAME_CLEAR, // ゲームクリア
     };
 
@@ -24,6 +26,7 @@ public class GameManagerController : MonoBehaviour
     [SerializeField] private Enemy m_enemy  = null;
     [SerializeField] private List<GateController> m_gate = null;
     [SerializeField] private DoorController m_door = null;
+    [SerializeField] private GoalArea m_goal = null;
 
     // BGMデータ
     private AudioSource m_audio_source = null;
@@ -61,11 +64,13 @@ public class GameManagerController : MonoBehaviour
         switch (m_state)
         {
             case STATE.GAME:
-                Game(); break;
+                Game();
+                break;
             case STATE.GAME_OVER:
                 GameOverEnd();
                 break;
             case STATE.GAME_CLEAR:
+                GameClear();
                 break;
             default:
                 break;
@@ -118,6 +123,11 @@ public class GameManagerController : MonoBehaviour
            STATE game_state = STATE.GAME_OVER;
             return game_state;
         }
+        else if (m_state == STATE.GAME && m_goal.IsGoal)
+        {
+            STATE game_state = STATE.GAME_CLEAR;
+            return game_state;
+        }
         return m_state;
     }
 
@@ -155,16 +165,23 @@ public class GameManagerController : MonoBehaviour
             elapsed_frame += Time.deltaTime;
             yield return null;
         }
+        SceneManager.LoadScene("Start");
     }
     // ゲームオーバ時の終了処理
     void GameOverEnd()
     {
         // 状態遷移
-        m_state = STATE.GAME_CLEAR;
+        m_state = STATE.GAME_START;
         // BGM切り替え
         m_audio_source.Stop();
         m_audio_source.PlayOneShot(m_audio_clip[2]);
         // ゲームオーバ処理
         StartCoroutine("GameOver");
+    }
+
+    // ゲームクリア処理
+    void GameClear()
+    {
+        SceneManager.LoadScene("Clear");
     }
 }

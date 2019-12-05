@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.5
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.32075915, g: 0.3580927, b: 0.4168295, a: 0.5}
+  m_IndirectSpecularColor: {r: 0.26572698, g: 0.27143598, b: 0.25494516, a: 0.5}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1706,7 +1706,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!108 &282226784
 Light:
   m_ObjectHideFlags: 0
@@ -12882,6 +12882,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1925140057}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2066337200 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2520331436869297044, guid: 6fe3acea38cd3154caa55f796eec27c3,
+    type: 3}
+  m_PrefabInstance: {fileID: 5748358947288563090}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53d8ecb71cb58eb40942373ebc4e12e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &2073369165 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 412106, guid: 34b237876876baf4fa134407d8dc57d5,
@@ -13787,6 +13799,11 @@ PrefabInstance:
       propertyPath: m_audio_clip.Array.data[2]
       value: 
       objectReference: {fileID: 8300000, guid: d18d73dec91cb4d41b0848accb84ef53, type: 3}
+    - target: {fileID: 809663908838804502, guid: 04c73e820c07a564f88087b0c33ba018,
+        type: 3}
+      propertyPath: m_goal
+      value: 
+      objectReference: {fileID: 2066337200}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 04c73e820c07a564f88087b0c33ba018, type: 3}
 --- !u!1001 &3947838527653097501
