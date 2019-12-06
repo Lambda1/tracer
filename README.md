@@ -1,4 +1,4 @@
-Bird Men
+Ressurection
 ====
 ## Description
 探索型ホラーゲームです.  
@@ -6,13 +6,13 @@ Bird Men
 
 ## Game  
 ゲームを公開しています.  
-![Unityroom](https://unityroom.com/games/lambda_ressurection)
+[Unityroom](https://unityroom.com/games/lambda_ressurection)
 
 ## Screen Shot  
-![Title](https://github.com/lambda1/SCP/blob/master/ss/scene1.png)  
-![Game1](https://github.com/lambda1/SCP/blob/master/ss/scene2.png)  
-![Game2](https://github.com/lambda1/SCP/blob/master/ss/scene3.png)  
-![Game3](https://github.com/lambda1/SCP/blob/master/ss/scene4png)  
+![Title](https://github.com/lambda1/tracer/blob/master/ss/scene1.png)  
+![Game1](https://github.com/lambda1/tracer/blob/master/ss/scene2.png)  
+![Game2](https://github.com/lambda1/tracer/blob/master/ss/scene3.png)  
+![Game3](https://github.com/lambda1/tracer/blob/master/ss/scene4png)  
 
 ## Development Environment  
 OS: Windows 10  
