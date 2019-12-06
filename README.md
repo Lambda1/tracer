@@ -12,7 +12,7 @@ Ressurection
 ![Title](https://github.com/lambda1/tracer/blob/master/ss/scene1.png)  
 ![Game1](https://github.com/lambda1/tracer/blob/master/ss/scene2.png)  
 ![Game2](https://github.com/lambda1/tracer/blob/master/ss/scene3.png)  
-![Game3](https://github.com/lambda1/tracer/blob/master/ss/scene4png)  
+![Game3](https://github.com/lambda1/tracer/blob/master/ss/scene4.png)  
 
 ## Development Environment  
 OS: Windows 10  
