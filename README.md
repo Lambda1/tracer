@@ -23,7 +23,7 @@ OS: Windows 10
 
 ## Install  
 コマンド  
-`$ git clone https://github.com/Lambda1/SCP.git`  
+`$ git clone https://github.com/Lambda1/tracer.git`  
 ダウンロード  
 「Clone or download」をクリック  
   
